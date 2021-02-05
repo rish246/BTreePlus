@@ -3,17 +3,35 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
+#define STRING_NODE 0
+#define INT_NODE 1
 class TreeNode
 {
+
+    int Type;
+
 public:
     TreeNode *left, *right;
 
-    TreeNode()
-        : left(nullptr), right(nullptr) {}
+    TreeNode(int _Type)
+        : Type(_Type), left(nullptr), right(nullptr) {}
 
     // Prints tree generated from this node
     virtual void printTree();
+
+    std::vector<std::vector<TreeNode *>> levelOrderTraversal();
+
+    int getType()
+    {
+        return this->Type;
+    }
+
+    virtual void dump()
+    {
+        std::cout << "Vanilla TreeNode" << std::endl;
+    }
 };
 
 class StringNode : public TreeNode
@@ -22,7 +40,7 @@ public:
     std::string value;
 
     StringNode(const std::string &v)
-        : value(v)
+        : value(v), TreeNode(STRING_NODE)
     {
     }
 
@@ -32,6 +50,11 @@ public:
     }
 
     void printTree();
+
+    void dump()
+    {
+        std::cout << getValue();
+    }
 };
 
 class IntNode : public TreeNode
@@ -40,7 +63,7 @@ class IntNode : public TreeNode
 
 public:
     IntNode(int v)
-        : value(v) {}
+        : value(v), TreeNode(INT_NODE) {}
 
     int getValue()
     {
@@ -48,6 +71,11 @@ public:
     }
 
     void printTree();
+
+    void dump()
+    {
+        std::cout << getValue();
+    }
 };
 
 #endif

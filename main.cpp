@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include "tree.h"
+
+// Struct
 int main()
 {
 
@@ -18,5 +20,28 @@ int main()
     TreeNode *leftRightNode = new IntNode(2);
     leftNode->left = leftLeftNode;
     leftNode->right = leftRightNode;
-    head->printTree();
+    // head->printTree();
+
+    std::vector<std::vector<TreeNode *>> levels = head->levelOrderTraversal();
+
+    std::string padding(10, ' ');
+    for (auto level : levels)
+    {
+        for (auto node : level)
+        {
+            std::cout << padding;
+
+            if (node)
+                node->dump();
+
+            // TypeCast the ptr to StringNode or IntNode
+        }
+        std::cout << std::endl;
+    }
 }
+// Internal left and right ptrs can point to
+// Look at the faults
+// Make a dump Function for Each Class and make it compulsory
+// For each ptr call dump
+// Function is working
+// Hail runtime polymorphism
