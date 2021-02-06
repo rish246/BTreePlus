@@ -7,10 +7,13 @@
 
 #define STRING_NODE 0
 #define INT_NODE 1
+
 class TreeNode
 {
 
     int Type;
+
+    typedef std::vector<TreeNode *> Level;
 
 public:
     TreeNode *left, *right;
@@ -21,7 +24,7 @@ public:
     // Prints tree generated from this node
     virtual void printTree();
 
-    std::vector<std::vector<TreeNode *>> levelOrderTraversal();
+    std::vector<Level> levelOrderTraversal();
 
     int getType()
     {

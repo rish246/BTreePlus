@@ -28,11 +28,13 @@ void IntNode::printTree()
         std::cout << this->getValue() << std::endl;
 }
 
-std::vector<std::vector<TreeNode *>> TreeNode::levelOrderTraversal()
-{
-    std::vector<std::vector<TreeNode *>> result;
+typedef std::vector<TreeNode *> Level;
 
-    std::vector<TreeNode *> initialLevel = {this};
+std::vector<Level> TreeNode::levelOrderTraversal()
+{
+    std::vector<Level> result;
+
+    Level initialLevel = {this};
     result.emplace_back(initialLevel);
 
     int nLevels = 1;
@@ -40,10 +42,10 @@ std::vector<std::vector<TreeNode *>> TreeNode::levelOrderTraversal()
 
     while (iLevel < nLevels)
     {
-        std::vector<TreeNode *> curLevel = result[iLevel];
+        Level curLevel = result[iLevel];
         bool canContinueTraversal = false;
 
-        std::vector<TreeNode *> newLevel;
+        Level newLevel;
 
         for (TreeNode *curLevelNode : curLevel)
         {

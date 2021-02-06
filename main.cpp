@@ -22,17 +22,27 @@ int main()
     leftNode->right = leftRightNode;
     // head->printTree();
 
+    TreeNode *rightLeftNode = new IntNode(3);
+    TreeNode *rightRightNode = new StringNode("Extreme Right Node");
+
+    rightNode->left = rightLeftNode;
+    rightNode->right = rightRightNode;
+
     std::vector<std::vector<TreeNode *>> levels = head->levelOrderTraversal();
 
-    std::string padding(10, ' ');
     for (auto level : levels)
     {
+        int paddingLen = 55 / level.size();
+        std::string padding(paddingLen, ' ');
+
         for (auto node : level)
         {
             std::cout << padding;
 
             if (node)
                 node->dump();
+
+            std::cout << padding;
 
             // TypeCast the ptr to StringNode or IntNode
         }
